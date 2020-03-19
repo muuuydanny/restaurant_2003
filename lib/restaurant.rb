@@ -1,22 +1,39 @@
+require "pry";
+
 class Restaurant
+  attr_reader :opening_time,
+              :name,
+              :dishes
+
   def initialize(opening_time, name)
     @opening_time = opening_time
     @name = name
+    @dishes = []
   end
 
-  def opening_time(opening_time)
-
-  end
 
   def closing_time(close)
-    @closing_time = (close)
+    #require "pry"; binding.pry
+    "#{@opening_time.to_i + close}:00"
   end
 
-  def dishes
-    @dishes = [] #I know what I did wrong here. Just not sure how else to do it.
+  def add_dish(dish)
+    #require "pry"; binding.pry
+    @dishes << dish
   end
 
-  attr_reader :opening_time
-  attr_reader :name
+  def open_for_lunch?
+    @opening_time.to_i < 12
+  end
+
+  def menu_dish_names
+    result = []
+    @dishes.each do |dish|
+      result << dish.upcase
+    end
+
+    result
+  end
+
 
 end
